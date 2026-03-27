@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer Notification</title>
+</head>
+<body>
+    <div>
+        <h1>Notificação de transferência!</h1>
+    </div>
+    <div>
+        <p>Olá, <span th:text="${payeeName}">Recebedor</span>!</p>
+        <p>Você recebeu uma transferência de <span th:text="${amount}">Amount</span> de
+            <span th:text="${senderName}">Sender Name</span>.</p>
+        <p>Obrigado por usar nosso serviço!</p>
+    </div>
+</body>
+</html>
