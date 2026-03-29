@@ -1,9 +1,8 @@
 package com.henrique.MailNotification.service;
 
-import com.henrique.MailNotification.dto.transactionDto.DetailsTransactionDto;
+import com.henrique.MailNotification.dto.mailNotificationDto.MailMessageDto;
 import com.henrique.MailNotification.exceptions.EmailException;
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -30,19 +29,19 @@ public class EmailService {
     @Value("${email.sender.name}")
     private String senderName;
 
-    public void emailSender(DetailsTransactionDto transactionDto) {
+    public void emailSender(MailMessageDto mailMessageDto) {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true, StandardCharsets.UTF_8.name());
 
             mimeMessageHelper.setFrom(new InternetAddress(from, senderName));
-            mimeMessageHelper.setTo(InternetAddress.parse(transactionDto.payee().email()));
+            mimeMessageHelper.setTo(InternetAddress.parse(mailMessageDto.payeeEmail()));
             mimeMessageHelper.setSubject("Notificação de transferência");
 
             Context context = new Context();
-            context.setVariable("payeeName", transactionDto.payee().fullName());
-            context.setVariable("amount", transactionDto.value());
-            context.setVariable("senderName", transactionDto.payer().fullName());
+            context.setVariable("payeeName", mailMessageDto.payeeFullName());
+            context.setVariable("amount", mailMessageDto.amount());
+            context.setVariable("senderName", mailMessageDto.payerFullName());
             String template = templateEngine.process("notification", context);
             mimeMessageHelper.setText(template, true);
             javaMailSender.send(message);
