@@ -1,12 +1,14 @@
-Microsserviço enviador de e-mails.
+Microsserviço responsável pelo envio de e-mails de notificação, baseado em eventos recebidos via Apache Kafka.
 
-Tecnologias utilizadas nesse projeto: Spring Boot, Gradle, Docker, Apache Kafka, Java Mail Sender
+Este serviço faz parte de uma arquitetura distribuída, sendo responsável por consumir eventos de transações financeiras e notificar usuários por e-mail.
+
+Tecnologias utilizadas nesse projeto: Spring Boot, Gradle, Docker, Apache Kafka, Thymeleaf, Java Mail Sender
 
 Link do projeto que consome esse microsserviço: https://github.com/HenriqueFerC/MailNotification
 
 Requisitos e orientações para rodar a aplicação: Ter em sua máquina o Docker instalado. Clone o repositório em uma pasta com `git clone https://github.com/HenriqueFerC/MailNotification`. Configure o application.properties de acordo com o passo a passo abaixo. Abra o terminal e rode : "docker-compose up --build". Após isso, o projeto estará rodando na sua máquina na porta 8081.
 
-applcation.properties:
+application.properties:
 
 ```
 spring.application.name=MailNotification
@@ -31,3 +33,5 @@ thymeleaf.enabled=true
 
 server.port=8081
 ```
+Nos campos "host", "username": Coloque o seu e-mail que será o enviador de e-mails.
+No campo "password": Coloque sua senha smtp.
