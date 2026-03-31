@@ -6,7 +6,7 @@ Tecnologias utilizadas nesse projeto: Spring Boot, Gradle, Docker, Apache Kafka,
 
 Link do projeto que consome esse microsserviço: https://github.com/HenriqueFerC/MailNotification
 
-Requisitos e orientações para rodar a aplicação: Ter em sua máquina o Docker instalado. Clone o repositório em uma pasta com `git clone https://github.com/HenriqueFerC/MailNotification`. Configure o application.properties de acordo com o passo a passo abaixo. Abra o terminal e rode : "docker-compose up --build". Após isso, o projeto estará rodando na sua máquina na porta 8081.
+Requisitos e orientações para rodar a aplicação: Ter em sua máquina o Docker instalado. Clone o repositório em uma pasta com `git clone https://github.com/HenriqueFerC/MailNotification`. Configure o application.properties de acordo com o passo a passo abaixo. O docker-compose se conecta com uma network externa, antes de rodar o compose, rode os containers do projeto principal. Abra o terminal e rode : "docker-compose up --build". Após isso, o projeto estará rodando na sua máquina na porta 8081.
 
 application.properties:
 
